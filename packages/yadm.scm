@@ -23,7 +23,7 @@
 	#~(modify-phases %standard-phases
 	     (delete 'configure)
 	     (delete 'bootstrap')
-	     (delete 'build'))
+	     (delete 'build'))))
     (synopsis "yadm")
     (description "yadm")
     (home-page "https://yadm.io/")
