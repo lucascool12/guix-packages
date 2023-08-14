@@ -17,6 +17,13 @@
 		(base32
 		  "1b9k9izi9kxwicqsa06gdh8q1mkad3dbrn11ib0f8p4r923m1yy5"))))
     (build-system gnu-build-system)
+    (arguments
+      (list
+	#:phases
+	#~(modify-phases %standard-phases
+	     (delete 'configure)
+	     (delete 'bootstrap')
+	     (delete 'build'))
     (synopsis "yadm")
     (description "yadm")
     (home-page "https://yadm.io/")
