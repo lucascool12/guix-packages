@@ -357,7 +357,7 @@ theories} (SMT) solver.  It provides a C/C++ API, as well as Python bindings.")
                          python-werkzeug
                          python-jinja2-2
                          python-itsdangerous
-                         python-click))
+                         python-click-7))
     (arguments
       `(#:tests? #f))))
 
@@ -386,6 +386,19 @@ theories} (SMT) solver.  It provides a C/C++ API, as well as Python bindings.")
        (sha256
         (base32
          "02k2ynmqvvd0z0gakkf8s4idyb606r7zgga41jrkhqmigy06fk2r"))))))
+
+(define-public python-flask-restful-flask2
+  (package/inherit python-flask-restful
+    (version "0.3.10")
+    (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "Flask-RESTful" version))
+        (sha256
+         (base32
+          "0dzckjjz3aw8nmisr5g9mnv02s2nqlhblykr9ydqzpr703pz4jpy"))))
+    (propagated-inputs 
+      (list python-aniso8601 python-flask-1 python-pytz))))
 
 
 (define-public python-idp-engine
@@ -417,7 +430,7 @@ theories} (SMT) solver.  It provides a C/C++ API, as well as Python bindings.")
                      python-dateutil
                      python-flask-1
                      python-flask-cors
-                     python-flask-restful
+                     python-flask-restful-flask2
                      python-fast-html
                      python-attrs-23
                      python-pyyaml-6.0.1))
@@ -428,7 +441,7 @@ theories} (SMT) solver.  It provides a C/C++ API, as well as Python bindings.")
                      python-dateutil
                      python-flask-1
                      python-flask-cors
-                     python-flask-restful
+                     python-flask-restful-flask2
                      python-fast-html
                      python-attrs-23
                      python-pyyaml-6.0.1))
