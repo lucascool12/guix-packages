@@ -114,7 +114,50 @@
               (uri (string-append "https://github.com/pytest-dev/pytest/archive/refs/tags/" version ".tar.gz"))
               (sha256
                 (base32
-                  "0rjqyddhwiqk5kl4pnwynxs9k8rnjl74rdv96a6i6066l82s174m"))))))
+                  "0rjqyddhwiqk5kl4pnwynxs9k8rnjl74rdv96a6i6066l82s174m"))))
+    (arguments
+     (list
+      #:phases
+      #~(modify-phases %standard-phases
+          (add-before 'build 'pretend-version
+            ;; The version string is usually derived via setuptools-scm, but
+            ;; without the git metadata available, the version string is set to
+            ;; '0.0.0'.
+            (lambda _
+              (setenv "SETUPTOOLS_SCM_PRETEND_VERSION"
+                      #$(package-version this-package))))
+          (replace 'check
+            (lambda* (#:key tests? #:allow-other-keys)
+              (setenv "TERM" "dumb")    ;attempt disabling markup tests
+              (if tests?
+                  (invoke "pytest" "-vv" "-k"
+                          (string-append
+                           ;; This test involves the /usr directory, and fails.
+                           " not test_argcomplete"
+                           ;; These test do not honor the isatty detection and
+                           ;; fail.
+                           " and not test_code_highlight"
+                           " and not test_color_yes"))
+                  (format #t "test suite not run~%")))))))
+    (propagated-inputs (list 
+                         python-exceptiongroup
+                         python-attrs-bootstrap
+                         python-iniconfig
+                         python-packaging-bootstrap
+                         python-pluggy-1.2
+                         python-py
+                         python-tomli))))
+
+(define-public python-pluggy-1.2
+  (package/inherit python-pluggy
+   (version "1.2.0")
+   (source
+    (origin
+     (method url-fetch)
+     (uri (pypi-uri "pluggy" version))
+     (sha256
+      (base32
+       "1cy4ljivmvwd5w4jihpyiyhfpvl5xqkb46rhakhga5cvax5hqbyi"))))))
 
 (define-public python-pytest-xdist-3.3.1
   (package
