@@ -50,7 +50,7 @@
                                 "#!/bin/bash\n"
                                 out "/share/bin/lua-language-server -E " out "/share/main.lua "
                                 "--logpath=${XDG_CACHE_HOME:-$HOME/.cache}/lua-language-server/log "
-                                "--metapath=${XDG_CACHE_HOME:-$HOME/.cache}/lua-language-server/meta") 
+                                "--metapath=${XDG_CACHE_HOME:-$HOME/.cache}/lua-language-server/meta $@") 
                               output-port)))
                       (chmod luals-bin #o555)))))
         #:install-plan
