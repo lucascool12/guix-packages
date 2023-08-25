@@ -59,6 +59,7 @@
          ("main.lua" "share/")
          ("debugger.lua" "share/")
          ("script" "share/")
+         ("locale" "share/")
          ("changelog.md" "share/"))))
     (native-inputs (list
                      ninja))
