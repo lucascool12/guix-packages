@@ -37,22 +37,22 @@
 (define* (sway-keyboard-layout keyboard-layout #:optional (input "*"))
   (string-append
     "input " input " {\n"
-    "    xkb_layout \"" (keyboard-layout-name keyboard-layout) "\""
+    "    xkb_layout \"" (keyboard-layout-name keyboard-layout) "\"\n"
     (if (keyboard-layout-variant keyboard-layout)
       (string-append
-        "    xkb_variant \"" (keyboard-layout-variant keyboard-layout)
+        "    xkb_variant \"" (keyboard-layout-variant keyboard-layout) "\"\n"
         ""))
     (if (keyboard-layout-model keyboard-layout)
       (string-append
-        "    xkb_model \"" (keyboard-layout-model keyboard-layout) "\"")
+        "    xkb_model \"" (keyboard-layout-model keyboard-layout) "\"\n")
       "")
     (let ((options (string-join
                      (keyboard-layout-options keyboard-layout) ","))
           (if (eq (string-length options) 0)
             (string-append
-              "    xkb_options \"" options "\"")
+              "    xkb_options \"" options "\"\n")
             "")))
-    "}")))
+    "}\n")))
 
 (define-record-type* <greetd-gtkgreet-greeter>
   greetd-gtkgreet-greeter make-greetd-gtkgreet-greeter
