@@ -48,7 +48,7 @@
       "")
     (let ((options (string-join
                      (keyboard-layout-options keyboard-layout) ",")))
-          (if (eq (string-length options) 0)
+          (if (eqv? (string-length options) 0)
             (string-append
               "    xkb_options \"" options "\"\n")
             ""))
