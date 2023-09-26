@@ -26,7 +26,7 @@
   (mixed-text-file
     "gtkgreet-sway-config"
     "# `-l` activates layer-shell mode. Notice that `swaymsg exit` will run after gtkgreet.\n"
-    "exec \"" gtkgreet "/bin/gtkgreet; " sway "/bin/swaymsg exit\"\n"
+    "exec \"" gtkgreet "/bin/gtkgreet -l; " sway "/bin/swaymsg exit\"\n"
     "bindsym Mod4+shift+e exec " sway "/bin/swaynag \\\n"
     "	-t warning \\\n"
     "	-m 'What do you want to do?' \\\n"

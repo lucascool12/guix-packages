@@ -27,7 +27,8 @@
                      pkg-config))
     (inputs (list
               json-c
-              gtk+))
+              gtk+
+              gtk-layer-shell))
     (synopsis "gtkgreet")
     (description "gtk greeter")
     (home-page "https://git.sr.ht/~kennylevinsen/gtkgreet")
