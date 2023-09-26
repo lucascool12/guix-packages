@@ -1,4 +1,4 @@
-(define-module (zig)
+(define-module (packages zig)
 	       #:use-module ((guix licenses) #:prefix license:)
 	       #:use-module (guix packages)
 	       #:use-module (guix download)

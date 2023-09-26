@@ -1,4 +1,4 @@
-(define-module (gtkgreet)
+(define-module (packages gtkgreet)
 	       #:use-module ((guix licenses) #:prefix license:)
 	       #:use-module (guix packages)
 	       #:use-module (guix download)

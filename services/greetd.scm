@@ -1,4 +1,4 @@
-(define-module (greetd)
+(define-module (services greetd)
 	       #:use-module ((guix licenses) #:prefix license:)
 	       #:use-module (guix packages)
 	       #:use-module (guix download)

@@ -1,4 +1,4 @@
-(define-module (fonts)
+(define-module (packages fonts)
 	       #:use-module ((guix licenses) #:prefix license:)
 	       #:use-module (guix packages)
 	       #:use-module (guix download)

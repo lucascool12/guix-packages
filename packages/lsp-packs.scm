@@ -1,4 +1,4 @@
-(define-module (lsp-packs)
+(define-module (packages lsp-packs)
            #:use-module (srfi srfi-1)
            #:use-module (srfi srfi-26)
            #:use-module (ice-9 regex)
