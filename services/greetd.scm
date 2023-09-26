@@ -52,7 +52,7 @@
             (string-append
               "    xkb_options \"" options "\"\n")
             ""))
-    "}\n")))
+    "}\n"))
 
 (define-record-type* <greetd-gtkgreet-greeter>
   greetd-gtkgreet-greeter make-greetd-gtkgreet-greeter
