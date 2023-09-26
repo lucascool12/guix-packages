@@ -8,11 +8,13 @@
 	       #:use-module (guix monads)
            #:use-module (guix records)
            #:use-module (gnu packages wm)
+           #:use-module (gnu system keyboard)
 	       #:use-module (packages gtkgreet)
            #:export (
                      greetd-gtkgreet-greeter
                      greetd-gtkgreet-tty-xdg-session-command
                      greetd-gtkgreet-tty-session-command
+                     sway-keyboard-layout
                      ))
 
 
@@ -24,13 +26,33 @@
   (mixed-text-file
     "gtkgreet-sway-config"
     "# `-l` activates layer-shell mode. Notice that `swaymsg exit` will run after gtkgreet.\n"
-    "exec \"" gtkgreet "/bin/gtkgreet -l; " sway "/bin/swaymsg exit\"\n"
+    "exec \"" gtkgreet "/bin/gtkgreet; " sway "/bin/swaymsg exit\"\n"
     "bindsym Mod4+shift+e exec " sway "/bin/swaynag \\\n"
     "	-t warning \\\n"
     "	-m 'What do you want to do?' \\\n"
     "	-b 'Poweroff' 'systemctl poweroff' \\\n"
     "	-b 'Reboot' 'systemctl reboot'\n"
     "include " sway "/etc/sway/config.d/*\n"))
+
+(define* (sway-keyboard-layout keyboard-layout #:optional (input "*"))
+  (string-append
+    "input " input " {\n"
+    "    xkb_layout \"" (keyboard-layout-name keyboard-layout) "\""
+    (if (keyboard-layout-variant keyboard-layout)
+      (string-append
+        "    xkb_variant \"" (keyboard-layout-variant keyboard-layout)
+        ""))
+    (if (keyboard-layout-model keyboard-layout)
+      (string-append
+        "    xkb_model \"" (keyboard-layout-model keyboard-layout) "\"")
+      "")
+    (let ((options (string-join
+                     (keyboard-layout-options keyboard-layout) ","))
+          (if (eq (string-length options) 0)
+            (string-append
+              "    xkb_options \"" options "\"")
+            "")))
+    "}")))
 
 (define-record-type* <greetd-gtkgreet-greeter>
   greetd-gtkgreet-greeter make-greetd-gtkgreet-greeter
