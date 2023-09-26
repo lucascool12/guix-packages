@@ -47,11 +47,11 @@
         "    xkb_model \"" (keyboard-layout-model keyboard-layout) "\"\n")
       "")
     (let ((options (string-join
-                     (keyboard-layout-options keyboard-layout) ","))
+                     (keyboard-layout-options keyboard-layout) ",")))
           (if (eq (string-length options) 0)
             (string-append
               "    xkb_options \"" options "\"\n")
-            "")))
+            ""))
     "}\n")))
 
 (define-record-type* <greetd-gtkgreet-greeter>
