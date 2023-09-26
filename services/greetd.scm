@@ -40,16 +40,14 @@
   (extra-env greetd-gtkgreet-extra-env (default '()))
   (xdg-env? greetd-gtkgreet-xdg-env? (default #t)))
 
-(define (greetd-gtkgreet-tty-session-command config)
-  (match-record config <greetd-gtkgreet-greeter>
-    (command command-args extra-env)
+(define* (greetd-gtkgreet-tty-session-command name command #:optional (command-args '()) (extra-env '()))
     (program-file
-     "agreety-tty-session-command"
+     name
      #~(begin
          (use-modules (ice-9 match))
          (for-each (match-lambda ((var . val) (setenv var val)))
                    (quote (#$@extra-env)))
-         (apply execl #$command #$command (list #$@command-args))))))
+         (apply execl #$command #$command (list #$@command-args)))))
 
 (define* (greetd-gtkgreet-tty-xdg-session-command name command #:optional (command-args '()) (extra-env '()))
     (program-file
