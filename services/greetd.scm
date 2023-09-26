@@ -71,4 +71,4 @@
         (args (greetd-container-args session)))
     (lower-object
      (program-file "agreety-command"
-       #~(apply execl (append (list #$container #$container) #$args))))))
+       #~(apply execl #$container #$container (list #$@args))))))
