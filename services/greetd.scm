@@ -40,15 +40,15 @@
     "    xkb_layout \"" (keyboard-layout-name keyboard-layout) "\"\n"
     (if (keyboard-layout-variant keyboard-layout)
       (string-append
-        "    xkb_variant \"" (keyboard-layout-variant keyboard-layout) "\"\n"
-        ""))
+        "    xkb_variant \"" (keyboard-layout-variant keyboard-layout) "\"\n")
+      "")
     (if (keyboard-layout-model keyboard-layout)
       (string-append
         "    xkb_model \"" (keyboard-layout-model keyboard-layout) "\"\n")
       "")
     (let ((options (string-join
                      (keyboard-layout-options keyboard-layout) ",")))
-          (if (eqv? (string-length options) 0)
+          (if (> (string-length options) 0)
             (string-append
               "    xkb_options \"" options "\"\n")
             ""))
