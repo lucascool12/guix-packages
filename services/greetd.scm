@@ -7,8 +7,8 @@
 	       #:use-module (guix gexp)
 	       #:use-module (guix monads)
            #:use-module (guix records)
+           #:use-module (gnu packages wm)
 	       #:use-module (packages gtkgreet)
-           #:use-module (gnu packages xdisorg)
            #:export (
                      greetd-gtkgreet-greeter
                      greetd-gtkgreet-tty-xdg-session-command
