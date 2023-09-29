@@ -7,6 +7,7 @@
 	       #:use-module (guix gexp)
 	       #:use-module (guix monads)
            #:use-module (gnu packages pkg-config)
+           #:use-module (gnu packages glib)
            #:use-module (gnu packages gtk)
            #:use-module (gnu packages web)
 	       #:use-module (guix build-system meson))
@@ -34,3 +35,25 @@
     (home-page "https://git.sr.ht/~kennylevinsen/gtkgreet")
     (license license:gpl3)))
 
+(define-public gtkgreet-envs
+  (package
+    (name "gtkgreet-envs")
+    (version "0.7.1")
+    (source (origin
+	      (method url-fetch)
+	      (uri "https://github.com/lucascool12/gtkgreet/archive/refs/tags/0.7.1.tar.gz")
+	      (sha256
+		(base32
+		  "1g7km4kwp0zkli6s9j1ljygjdd9xmjjv8pdj5wadg6x9avxdg5p4"))))
+    (build-system meson-build-system)
+    (native-inputs (list
+                     pkg-config))
+    (inputs (list
+              json-c
+              gtk+
+              glib-next
+              gtk-layer-shell))
+    (synopsis "gtkgreet")
+    (description "gtk greeter")
+    (home-page "https://git.sr.ht/~kennylevinsen/gtkgreet")
+    (license license:gpl3)))
