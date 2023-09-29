@@ -44,7 +44,7 @@
 	      (uri "https://github.com/lucascool12/gtkgreet/archive/refs/tags/0.7.1.tar.gz")
 	      (sha256
 		(base32
-		  "1g7km4kwp0zkli6s9j1ljygjdd9xmjjv8pdj5wadg6x9avxdg5p4"))))
+		  "0q7rf5k098n0ijv8vph4w1vl4mxcx0gsyk77nxr2prbngglnznai"))))
     (build-system meson-build-system)
     (native-inputs (list
                      pkg-config))
