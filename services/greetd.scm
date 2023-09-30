@@ -34,20 +34,41 @@
     "	-b 'Reboot' 'systemctl reboot'\n"
     "include " sway "/etc/sway/config.d/*\n"))
 
-(define* (sway-keyboard-layout keyboard-layout #:optional (input "*"))
+(define (add-comma-if-next-exists ls)
+  (if (not (null? (cdr ls)))
+    (append
+      (list
+        (car ls)
+        ",")
+      (add-comma-if-next-exists (cdr ls)))
+    ls))
+
+(define (replace-false ls replace)
+  (if (null? ls)
+    ls
+    (append
+      (list
+        (if (eqv? (car ls) #f)
+          replace
+          (car ls)))
+        (replace-false (cdr ls) replace))))
+
+(define* (sway-keyboard-layout kbls #:optional (input "*"))
   (string-append
     "input " input " {\n"
-    "    xkb_layout \"" (keyboard-layout-name keyboard-layout) "\"\n"
-    (if (keyboard-layout-variant keyboard-layout)
-      (string-append
-        "    xkb_variant \"" (keyboard-layout-variant keyboard-layout) "\"\n")
-      "")
-    (if (keyboard-layout-model keyboard-layout)
-      (string-append
-        "    xkb_model \"" (keyboard-layout-model keyboard-layout) "\"\n")
-      "")
+    "    xkb_layout \"" (apply string-append (add-comma-if-next-exists (map keyboard-layout-name kbls))) "\"\n"
+    (let ((variants (apply string-append (replace-false (add-comma-if-next-exists (map keyboard-layout-variant kbls)) ""))))
+      (if (> (string-length variants) 0)
+        (string-append
+          "    xkb_variant \"" variants "\"\n")
+        ""))
+    (let ((models (apply string-append (replace-false (add-comma-if-next-exists (map keyboard-layout-model kbls)) ""))))
+      (if (> (string-length models) 0)
+        (string-append
+          "    xkb_model \"" models "\"\n")
+        ""))
     (let ((options (string-join
-                     (keyboard-layout-options keyboard-layout) ",")))
+                     (replace-false (apply append (map keyboard-layout-options kbls)) "") ",")))
           (if (> (string-length options) 0)
             (string-append
               "    xkb_options \"" options "\"\n")
