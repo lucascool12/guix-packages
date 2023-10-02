@@ -13,7 +13,7 @@
 	       #:use-module (gnu packages xorg)
 	       #:use-module (gnu packages tls)
 	       #:use-module (gnu packages fontutils)
-	       #:use-module (nongnu packages mozilla)
+	       ;; #:use-module (nongnu packages mozilla)
 	       #:use-module (nonguix build-system binary))
 
 (define-public zotero
@@ -56,7 +56,7 @@
         #:patchelf-plan
         `(
           ("zotero-bin"
-           ("gcc" ("firefox" "/lib/firefox") "cairo" "gtk+" "nspr" "glib" "atk" "libxcb" "libx11" "dbus"
+           ("gcc" "cairo" "gtk+" "nspr" "glib" "atk" "libxcb" "libx11" "dbus"
             "libxdamage" "libxcursor" "libxrender" "libxfixes" "libxcomposite"
             "libxext" "libxi" "libxt" "pango" "dbus-glib" "freetype" "fontconfig-minimal"
             "gdk-pixbuf"))
@@ -115,7 +115,7 @@
         fontconfig
         gdk-pixbuf
         pango
-        firefox
+        ;; firefox
         nss
         nspr))
     (synopsis "zig")
