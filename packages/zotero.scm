@@ -99,7 +99,7 @@
         libxcb
         libx11
         `(,gcc "lib")
-        glib-next
+        glib
         dbus
         dbus-glib
         openssl-3.0
@@ -115,7 +115,6 @@
         fontconfig
         gdk-pixbuf
         pango
-        ;; firefox
         nss
         nspr))
     (synopsis "zig")
