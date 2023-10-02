@@ -72,7 +72,7 @@
            ("libc" "cairo" "gtk+" "gcc" "glib" "atk" "libxcb" "libx11" "dbus" "openssl"
             "nss" "libxdamage" "libxcursor" "libxrender" "libxfixes" "libxcomposite"
             "libxext" "libxi" "libxt" "pango" "nspr" "dbus-glib" "freetype" "fontconfig-minimal"
-            "firefox" "gdk-pixbuf"))
+            "gdk-pixbuf"))
           )
         #:phases
         (modify-phases %standard-phases
